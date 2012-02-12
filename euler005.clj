@@ -10,7 +10,6 @@
 ))
 (def is-div? (fn [x xrange]
 	"Figures out if [x] is divisible by all the numbers in list [xrange], but faster"
-
 	(if (empty? xrange)
 		true
 		(if (= (mod x (first xrange)) 0) 
