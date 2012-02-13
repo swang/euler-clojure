@@ -7,7 +7,7 @@
 	    :doc "converts a number x into a list of digits"
 	    :test (fn []    (is (= (num-to-str-list 1234) ["1" "2" "3" "4"])))
 	}
-	(into [] (rest (split (Integer/toString x) #"") ))
+	(into [] (rest (split (str x) #"") ))
 ))
 
 (def is-palidrome (fn [x]
