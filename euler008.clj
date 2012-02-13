@@ -5,7 +5,7 @@
 (def int2digits (fn [num]
     ^{  
         :doc "returns a list with the digits of number [num]"
-        :test (fn [] (= [1 0 0 0 ] (int2digits 1000)))
+        :test (fn [] (is (= [1 0 0 0] (int2digits 1000))))
     }
     (into [] 
         (map #(Integer/parseInt %) 

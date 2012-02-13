@@ -5,7 +5,6 @@
 	; and instead of using (fn) use #() shorthand.
 )
 (print
-
 	(reduce 
 		+ (filter even? 
 			(take-while 

@@ -7,7 +7,6 @@
 )
 
 (print
-
 	(reduce + 
 		(map 
 			#(if 
