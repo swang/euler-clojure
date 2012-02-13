@@ -121,16 +121,14 @@
 
 (println 
     (apply str
-        (into []
-            (take 
-                10
-                (rest (split 
-                    (str 
-                        (reduce + list-of-numbers)
-                    )
-                    #""
-                ))
-            )
+        (take 
+            10
+            (rest (split 
+                (str 
+                    (reduce + list-of-numbers)
+                )
+                #""
+            ))
         )
     )
 )
