@@ -16,6 +16,8 @@
 ;
 ; 443839
 
+; #30 and #34 are similar problems so I used what I did in #34 and applied it to this problem
+
 (use '[clojure.string :only (split)])
 
 (def sum-fifth-power-digits (fn [num]
