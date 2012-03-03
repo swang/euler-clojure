@@ -19,8 +19,6 @@
 ; 31626
 ;
 
-(use '[clojure.contrib.lazy-seqs :only (primes)])
-
 (defn divisors 
     ([d] (divisors d (+ 1 (int (/ d 2))) ))
     ([d n]
