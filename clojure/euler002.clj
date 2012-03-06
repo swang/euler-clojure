@@ -13,6 +13,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;
 ; 4613732
+;
 
 (comment
 	; took me a while, trying to figure out how to generate a list based on what i wanted
@@ -20,7 +21,7 @@
 	; also figured out passing in closures (lambdas?) to represent a predicate in take-while 
 	; and instead of using (fn) use #() shorthand.
 )
-(print
+(println
 	(reduce 
 		+ (filter even? 
 			(take-while 
@@ -29,11 +30,4 @@
 					first 
 					(iterate 
 						(fn [[a,b]] [b (+ a b)]) 
-						[1 1]
-					)
-				)
-			)
-		)
-	)
-
-)
+						[1 1]))))))

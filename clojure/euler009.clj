@@ -13,17 +13,16 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;
 ; 31875000
+;
 
 ; Modeled after `for` loop created in euler004.clj
 
 (println 
-    (first (for [
-        a (range 1 500)
-        b (range a 500)
-        c (range b 500)
+    (first
+        (for [
+            a (range 1 500)
+            b (range a 500)
+            c (range b 500)
         	:when (and (= (+ a b c) 1000) (= (+ (* a a) (* b b)) (* c c)))
         ]
-        (* a b c)
-        
-    ))
-)
+        (* a b c))))

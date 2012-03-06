@@ -38,7 +38,6 @@
                 false
                 (recur (into [] (rest (butlast number)))))))))
  
-
 (println (reduce + 
     (for [
         x (range 1 1000001)

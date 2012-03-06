@@ -19,21 +19,17 @@
 
 (defn triangle-numbers
     ([] (triangle-numbers 1))
-    ([n] (lazy-seq (cons (/ (* n (+ n 1)) 2) (triangle-numbers (inc n)))))
-)
+    ([n] (lazy-seq (cons (/ (* n (+ n 1)) 2) (triangle-numbers (inc n))))))
 
 (defn pentagonal-numbers
     ([] (pentagonal-numbers 1))
-    ([n] (lazy-seq (cons (/ (* n (- (* 3 n) 1)) 2) (pentagonal-numbers (inc n)))))
-)
+    ([n] (lazy-seq (cons (/ (* n (- (* 3 n) 1)) 2) (pentagonal-numbers (inc n))))))
 
 (defn hexagonal-numbers
     ([] (hexagonal-numbers 1))
-    ([n] (lazy-seq (cons (* n (- (* 2 n) 1)) (hexagonal-numbers (inc n)))))
-)
+    ([n] (lazy-seq (cons (* n (- (* 2 n) 1)) (hexagonal-numbers (inc n))))))
 (defn is-int [a]
-    (= (Math/floor a) a)
-)
+    (= (Math/floor a) a))
 
 (defn quadratic-formula [a, b, c]
     ^{
@@ -74,18 +70,13 @@
     (is-int 
         (first 
             (filter #(< 0 %1)
-                (quadratic-formula (float (/ 3 2)) (float (/ -1 2)) (- n))
-            )
-        )
-    )
-)
+                (quadratic-formula (float (/ 3 2)) (float (/ -1 2)) (- n)) ))))
+                
 (defn is-hexagonal [n]
     (->>    (quadratic-formula 2 -1 (- n))
             (filter #(< 0 %))
             first
-            is-int
-    )
-)
+            is-int))
 (comment 
     ; this was my original loop, not sure which one is faster, run benchmark later.
     (println (first
@@ -93,9 +84,7 @@
             t (take 100000 (triangle-numbers 1))
                 :when (and (is-pentagonal t) (is-hexagonal t))
             ]
-            t
-        )
-    ))
+            t)))
 )
 (println 
     (loop [x 286] ;start at 286 since triangle-numbers @285 returns 40755
@@ -104,7 +93,4 @@
                 (and (is-pentagonal t) (is-hexagonal t))
             )
             (first (triangle-numbers x))
-            (recur (+ x 1))
-        )
-    )
-)
+            (recur (+ x 1)))))

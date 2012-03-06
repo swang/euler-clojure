@@ -40,23 +40,14 @@
         (when-let [s (seq coll)]
             (if (pred (first s))
                 (cons (first s) (take-until pred (rest s)))
-                (cons (first s) '())
-            )
-        )
-    )
-)
+                (cons (first s) '())))))
 
 (println
     (count
-    	(take-until
-    		(complement #(= (count (.toString %)) 1000))
-    		(map 
-    			first
-    			(iterate 
-    				(fn [[a,b]] [b (+ a b)]) 
-    				[1N 1N]
-    			)
-    		)
-    	)
-    )
-)
+        (take-until
+            (complement #(= (count (.toString %)) 1000))
+            (map 
+                first
+                (iterate 
+                    (fn [[a,b]] [b (+ a b)]) 
+                    [1N 1N])))))

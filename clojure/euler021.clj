@@ -28,12 +28,7 @@
                     (recur (rest s) (conj r (first s)))
                     (recur (rest s) r)
                 )
-                r
-            )
-        )
-        
-    )
-)
+                r))))
 
 (defn is-amicable 
     "returns true if n is amicable wherein amicable means d(n) = m & d(m) = n where a != b"
@@ -41,11 +36,8 @@
         (let [da (divisors n)
               db (reduce + (divisors (reduce + da)))
             ]
-            (and (not= (reduce + da) db) (= n db))
-        )
-    )
-)
-
+            (and (not= (reduce + da) db) (= n db)))))
+            
 (println 
     (reduce +
         (loop [s 1 amicable ()]
@@ -57,8 +49,4 @@
                     (recur (inc s) (conj amicable s))
                     (recur (inc s) amicable)
                 )
-                amicable
-            )
-        )
-    )
-)
+                amicable))))

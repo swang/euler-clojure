@@ -10,6 +10,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;
 ; 233168
+;
 
 (comment
 	; My plan here is to generate a list of numbers from 0-999, map this against whether the number divides by 3 or 5.
@@ -22,11 +23,5 @@
 (print
 	(reduce + 
 		(map 
-			#(if 
-				(or (= (mod %1 3) 0) (= (mod %1 5) 0)) %1 0
-			)
-			
-			(range 1 1000)
-		)
-	)
-)
+			#(if (or (= (mod %1 3) 0) (= (mod %1 5) 0)) %1 0 )
+			(range 1 1000))))

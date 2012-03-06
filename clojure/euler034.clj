@@ -41,7 +41,6 @@
                         (is (= (sum-fact-digits 123) 9))
                         (is (= (sum-fact-digits 145) 145))
         )
-
     }
     (reduce + (map #(fact %) (num-to-digits-seq num) ))))
 

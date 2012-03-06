@@ -30,7 +30,4 @@
                 h                               (range 0 (- 201 a b c d e f g))
                     :when (= 200 (+ a b c d e f g h))
             ]
-            1
-        )
-    )
-)
+            1)))

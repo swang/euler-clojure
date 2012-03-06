@@ -16,6 +16,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;
 ; 25164150
+;
 
 ; "pretty straightforward, took another approach using loop/reduce. figured this was a much better way to do this calculation (map and reduce vs loops)"
 
@@ -29,6 +30,5 @@
 	(let [x (reduce + (range 1 (+ i 1)))] (* x x))
 	
 ))
-
 
 (println (- (square-sum 100) (sum-squares 100)))
