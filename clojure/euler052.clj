@@ -15,33 +15,26 @@
 
 (use '[clojure.string :only (split)])
 
-(defn split-number [num]
-    "split a number into its digits (formatted as strings)"
-    (into [] (rest (split (str num) #"")))
-)
+(def num-to-digits-str-seq (fn [x]
+	^{  :doc "split a number into a sequence of its digits (elements are strings, not numbers)"
+	    :test (fn []    (is (= (num-to-str-list 1234) ["1" "2" "3" "4"]))) }
+    (rest (split (str x) #"") )))
+
 (defn same-digits [coll]
     "returns true if all elements in collection contain the same digits"
     (if (<= (count coll) 1)
         true
         (if 
             (= 
-                (sort (split-number (first coll))) 
-                (sort (split-number (second coll)))
+                (sort (num-to-digits-str-seq (first coll))) 
+                (sort (num-to-digits-str-seq (second coll)))
             )
             (same-digits (rest coll))
-            false
-        )
-    )
-)
-(println
+            false)))
+            
+(time
     (loop [x 10000]
-        (if 
-            (same-digits 
-                (list x (* 2 x) (* 3 x) (* 4 x) (* 5 x) (* 6 x))
-            )
+        (if (same-digits (list x (* 2 x) (* 3 x) (* 4 x) (* 5 x) (* 6 x)))
             x
-            (recur (inc x))
-        )
-        
-    )
-)
+            (recur (inc x)))))
+            

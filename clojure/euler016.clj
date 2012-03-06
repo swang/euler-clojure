@@ -14,19 +14,12 @@
 (require '[clojure.math.numeric-tower :as math])
 (use '[clojure.string :only (split)])
 
+(defn num-to-digits-seq [n]
+    "split a number into a sequence of its digits (elements are numbers, not strings)"
+    (map #(Integer/parseInt %) (rest (split (str n) #"")) ) )
+
 (println 
     (reduce 
         + 
-        (map 
-            #(Integer/parseInt %1)
-            (rest 
-                (split 
-                    (str 
-                        (math/expt 2 1000)
-                    )
-                    #""
-                )
-            )
-        )
-    )
-)
+        (num-to-digits-seq 
+            (math/expt 2 1000))))

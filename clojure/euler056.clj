@@ -14,21 +14,20 @@
 ; 972
 ;
 
+(require '[clojure.math.numeric-tower :as math]) 
 (use '[clojure.string :only (split)])
 
-(defn split-number [x]
-	"converts a number x into a list of digits"
-	(into [] (rest (split (str x) #"") ))
-)
+(defn num-to-digits-seq [n]
+    "split a number into a sequence of its digits (elements are numbers, not strings)"
+    (map #(Integer/parseInt %) (rest (split (str n) #"")) ) )
+
 (println 
     (apply 
         max
         (for [
-            a (range 1 100)
-            b (range 1 100)
-                :let [ a_power_b (reduce + (map #(Integer/parseInt %) (split-number (math/expt a b)))) ]
+                a (range 1 100)
+                b (range 1 100)
+                :let [ a_power_b (reduce + (num-to-digits-seq (math/expt a b))) ]
             ]
-            a_power_b
-        )
-    )
-)
+            a_power_b)))
+            

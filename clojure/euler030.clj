@@ -23,6 +23,10 @@
 
 (use '[clojure.string :only (split)])
 
+(defn num-to-digits-seq [n]
+    "split a number into a sequence of its digits (elements are numbers, not strings)"
+    (map #(Integer/parseInt %) (rest (split (str n) #"")) ) )
+
 (def sum-fifth-power-digits (fn [num]
     ^{
         :doc "Gets the sum of the fifth power of each digit in [num]"
@@ -32,15 +36,7 @@
         + 
         (map 
             #(Math/pow % 5) 
-            (map 
-                #(Integer/parseInt %)
-                (rest 
-                    (split (str num) #"")
-                )
-            )
-        )
-    )
-))
+            (num-to-digits-seq num)))))
 
 (println 
     (reduce + 
@@ -48,7 +44,4 @@
             i (range 2 1000000)
                 :when (= i (int (sum-fifth-power-digits i)))
             ]
-            i
-        )
-    )
-)
+            i)))

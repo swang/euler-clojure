@@ -17,14 +17,11 @@
 
 (use '[clojure.string :only (split)])
 
-(def num-to-str-list (fn [x]
-	^{ 
-	    :doc "converts a number x into a list of digits"
-	    :test (fn []    (is (= (num-to-str-list 1234) ["1" "2" "3" "4"])))
-	}
-	(into [] (rest (split (str x) #"") ))
-))
-
+(def num-to-digits-str-seq (fn [x]
+    ^{  :doc "split a number into a sequence of its digits (elements are strings, not numbers)"
+        :test (fn []    (is (= (num-to-str-list 1234) ["1" "2" "3" "4"]))) }
+    (rest (split (str x) #"") )))
+    
 (def is-palidrome (fn [x]
     ^{
         :doc "returns true if number x reads the same front and back"
@@ -34,22 +31,17 @@
                         (is (= (is-palidrome 12213) false))
         )
     }
-    (loop [number (num-to-str-list x)]
+    (loop [number (num-to-digits-str-seq x)]
         (if (or (empty? number) (= 1 (count number)))
             true
             (if (not (= (first number) (last number)))
                 false
-                (recur (into [] (rest (butlast number))))
-            )
-        )
-    )
-))
+                (recur (into [] (rest (butlast number)))))))))
+ 
 
 (println (reduce + 
     (for [
         x (range 1 1000001)
             :when (and (is-palidrome x) (is-palidrome (Integer/toBinaryString x)))
         ]
-        x
-    )
-))
+        x)))

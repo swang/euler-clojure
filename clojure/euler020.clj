@@ -12,27 +12,22 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;
 ; 648
+;
 
 ; used bigint to solve problem of multiplying large numbers
  
 (use '[clojure.string :only (split)])
-(println (reduce 
-    + 
-    (map 
-        #(Integer/parseInt %) 
-        (rest 
-            (split 
-                (str
-                    (reduce 
-                        * 
-                        (map 
-                            bigint 
-                            (range 1 101)
-                        )
-                    )
-                ) 
-                #""
-            )
-        )
-    )
-))
+
+(defn num-to-digits-seq [n]
+    "split a number into a sequence of its digits (elements are numbers, not strings)"
+    (map #(Integer/parseInt %) (rest (split (str n) #"")) ) )
+
+(println 
+    (reduce 
+        + 
+        (num-to-digits-seq
+            (reduce 
+                * 
+                (map 
+                    bigint 
+                    (range 1 101))))))

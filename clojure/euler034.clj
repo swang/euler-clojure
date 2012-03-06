@@ -12,8 +12,13 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;
 ; 40730
+;
 
 (use '[clojure.string :only (split)])
+
+(defn num-to-digits-seq [n]
+    "split a number into a sequence of its digits (elements are numbers, not strings)"
+    (map #(Integer/parseInt %) (rest (split (str n) #"")) ) )
 
 (def fact (fn [num]
     ^{
@@ -24,8 +29,7 @@
                         (is (= (fact 10) 3628800))
         )
     }
-    (reduce * (range 1 (+ 1 num)))
-))
+    (reduce * (range 1 (+ 1 num)))))
 
 (def sum-fact-digits (fn [num]
     ^{
@@ -39,16 +43,12 @@
         )
 
     }
-    (reduce + (map #(fact %) (map #(Integer/parseInt %) (rest (split (str num) #"") ))))
-))
+    (reduce + (map #(fact %) (num-to-digits-seq num) ))))
 
-(println 
+(println
     (reduce + 
         (for [
             i (range 3 500000)
                 :when (= i (sum-fact-digits i))
             ]
-            i
-        )
-    )
-)
+            i)))

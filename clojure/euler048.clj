@@ -14,25 +14,18 @@
 (require '[clojure.math.numeric-tower :as math])
 (use '[clojure.string :only (split)])
 
-(defn split-number [x]
-	"converts a number x into a list of digits"
-	(into [] (rest (split (str x) #"") ))
-)
+(defn num-to-digits-seq [n]
+    "split a number into a sequence of its digits (elements are numbers, not strings)"
+    (map #(Integer/parseInt %) (rest (split (str n) #"")) ) )
 
-(println 
+(println
     (apply 
         str
         (take-last 
             10 
-            (split-number
+            (num-to-digits-seq
                 (reduce 
                     + 
                     (map 
                         #(math/expt % %) 
-                        (range 1 1000)
-                    )
-                )
-            )
-        )
-    )
-)
+                        (range 1 1000)))))))
